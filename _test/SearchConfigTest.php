@@ -45,7 +45,7 @@ class SearchConfigTest extends StructTest
 
         $this->assertEquals($ID, $searchConfig->applyFilterVars('$ID$'));
         $this->assertEquals('foo:bar', $searchConfig->applyFilterVars('$NS$'));
-        $this->assertEquals('init', $searchConfig->applyFilterVars('$PAGE$'));
+        $this->assertEquals('baz', $searchConfig->applyFilterVars('$PAGE$'));
 
         saveWikiText($ID, '', 'cleanup');
         clearstatcache();
