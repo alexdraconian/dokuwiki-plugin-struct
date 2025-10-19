@@ -33,6 +33,24 @@ class SearchConfigTest extends StructTest
         $this->assertEquals(date('Y-m-d'), $searchConfig->applyFilterVars('$DATE(now)$'));
     }
 
+    public function test_filtervars_missing_pageid()
+    {
+        global $INFO, $ID;
+
+        $ID = 'foo:bar:baz';
+        saveWikiText($ID, 'initial page', 'created for filter var test');
+        $INFO = [];
+
+        $searchConfig = new SearchConfig([]);
+
+        $this->assertEquals($ID, $searchConfig->applyFilterVars('$ID$'));
+        $this->assertEquals('foo:bar', $searchConfig->applyFilterVars('$NS$'));
+        $this->assertEquals('init', $searchConfig->applyFilterVars('$PAGE$'));
+
+        saveWikiText($ID, '', 'cleanup');
+        clearstatcache();
+    }
+
     public function test_filtervars_nsorid()
     {
         global $INFO;
