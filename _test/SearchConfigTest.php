@@ -75,8 +75,8 @@ class SearchConfigTest extends StructTest
         $this->assertSame([], $searchConfig->getSorts());
         $this->assertEquals([], $this->getInaccessibleProperty($searchConfig, 'filter'));
 
-        unset($INPUT[meta\SearchConfigParameters::$PARAM_SORT]);
-        unset($INPUT[meta\SearchConfigParameters::$PARAM_OFFSET]);
+        $INPUT->remove(meta\SearchConfigParameters::$PARAM_SORT);
+        $INPUT->remove(meta\SearchConfigParameters::$PARAM_OFFSET);
         unset($_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]);
     }
 
