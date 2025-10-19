@@ -51,6 +51,36 @@ class SearchConfigTest extends StructTest
         clearstatcache();
     }
 
+    public function test_filtervars_ignore_dynamic_filters()
+    {
+        global $INPUT;
+
+        $INPUT->set(meta\SearchConfigParameters::$PARAM_SORT, '^alias2.athird');
+        $INPUT->set(meta\SearchConfigParameters::$PARAM_OFFSET, 25);
+        $_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]['alias1.first*~'] = 'test';
+        $_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]['afirst='] = 'test2';
+
+        $config = [
+            'schemas' => [
+                ['schema1', 'alias1']
+            ],
+            'cols' => ['first'],
+            'limit' => 10
+        ];
+
+        $searchConfig = new SearchConfig($config, false);
+
+        $this->assertSame(0, $searchConfig->getLimit());
+        $this->assertSame(0, $searchConfig->getOffset());
+        $this->assertSame([], $searchConfig->getSorts());
+        $this->assertEquals([], $searchConfig->getDynamicParameters()->getURLParameters());
+
+        unset($INPUT[meta\SearchConfigParameters::$PARAM_SORT]);
+        unset($INPUT[meta\SearchConfigParameters::$PARAM_OFFSET]);
+        unset($_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]);
+        unset($_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]);
+    }
+
     public function test_filtervars_nsorid()
     {
         global $INFO;
