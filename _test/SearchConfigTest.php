@@ -60,6 +60,8 @@ class SearchConfigTest extends StructTest
         $_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]['alias1.first*~'] = 'test';
         $_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]['afirst='] = 'test2';
 
+        $this->loadSchemaJSON('schema1');
+
         $config = [
             'schemas' => [
                 ['schema1', 'alias1']
