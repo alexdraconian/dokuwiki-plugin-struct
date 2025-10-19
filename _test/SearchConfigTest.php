@@ -66,20 +66,17 @@ class SearchConfigTest extends StructTest
             'schemas' => [
                 ['schema1', 'alias1']
             ],
-            'cols' => ['first'],
-            'limit' => 10
+            'cols' => ['first']
         ];
 
         $searchConfig = new SearchConfig($config, false);
 
-        $this->assertSame(0, $searchConfig->getLimit());
         $this->assertSame(0, $searchConfig->getOffset());
         $this->assertSame([], $searchConfig->getSorts());
         $this->assertEquals([], $searchConfig->getDynamicParameters()->getURLParameters());
 
         unset($INPUT[meta\SearchConfigParameters::$PARAM_SORT]);
         unset($INPUT[meta\SearchConfigParameters::$PARAM_OFFSET]);
-        unset($_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]);
         unset($_REQUEST[meta\SearchConfigParameters::$PARAM_FILTER]);
     }
 
