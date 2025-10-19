@@ -16,7 +16,7 @@ use dokuwiki\plugin\struct\meta\StructException;
 
 class syntax_plugin_struct_output extends SyntaxPlugin
 {
-    protected $hasBeenRendered = array('metadata'=>false, 'xhtml'=>false);
+    protected $hasBeenRendered = array('metadata' => false, 'xhtml' => false);
 
     protected const XHTML_OPEN = '<div id="plugin__struct_output">';
     protected const XHTML_CLOSE = '</div>';
@@ -115,8 +115,7 @@ class syntax_plugin_struct_output extends SyntaxPlugin
         // do not render the output twice on the same page, e.g. when another page has been included
         if ($format == 'metadata') {
             $this->hasBeenRendered['metadata'] = true;
-        }
-        else if ($format == 'xhtml') {
+        } elseif ($format == 'xhtml') {
             $this->hasBeenRendered['xhtml'] = true;
         }
         try {

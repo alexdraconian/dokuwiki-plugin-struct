@@ -114,7 +114,7 @@ class syntax_plugin_struct_table extends SyntaxPlugin
             } else {
                 $search = $this->getSearchConfig($config);
             }
-            
+
             if ($format === 'struct_csv' || $format === "metadata") {
                 // no pagination in export or metadata render
                 $search->setLimit(0);
