@@ -73,7 +73,7 @@ class SearchConfigTest extends StructTest
 
         $this->assertSame(0, $searchConfig->getOffset());
         $this->assertSame([], $searchConfig->getSorts());
-        $this->assertEquals([], $searchConfig->getDynamicParameters()->getURLParameters());
+        $this->assertEquals([], $this->getInaccessibleProperty($searchConfig, 'filter'));
 
         unset($INPUT[meta\SearchConfigParameters::$PARAM_SORT]);
         unset($INPUT[meta\SearchConfigParameters::$PARAM_OFFSET]);
