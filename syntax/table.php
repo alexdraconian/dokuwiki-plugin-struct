@@ -149,9 +149,9 @@ class syntax_plugin_struct_table extends SyntaxPlugin
      * @param array $config
      * @return SearchConfig
      */
-    protected function getSearchConfig($config, $dymamic = true)
+    protected function getSearchConfig($config, $dynamic = true)
     {
-        return new SearchConfig($config, $dymamic);
+        return new SearchConfig($config, $dynamic);
     }
 
 
